@@ -1,0 +1,22 @@
+#!/bin/sh
+
+set -eux
+
+AVD_NAME="$(basename "${0}")"
+CONTENTSPATH="$( cd "$(dirname "${0}")/.." ; pwd -P )"
+TEMPLATE_ROOT="${CONTENTSPATH}/Resources/avd"
+
+export ANDROID_SDK_ROOT="${CONTENTSPATH}/Resources/android-sdk"
+export ANDROID_AVD_HOME="$HOME/Library/Application Support/Android Emulator Standalone AVD"
+
+if [ -z "${AVD_NAME}" ]; then
+  exit 1
+fi
+
+if [ ! -f "$ANDROID_AVD_HOME/$AVD_NAME.ini" ]; then
+  mkdir -p "$ANDROID_AVD_HOME"
+  cp -r "$TEMPLATE_ROOT/$AVD_NAME.ini" "$TEMPLATE_ROOT/$AVD_NAME.avd" "$ANDROID_AVD_HOME"
+  echo "path=$ANDROID_AVD_HOME/$AVD_NAME.avd" >> "$ANDROID_AVD_HOME/$AVD_NAME.ini"
+fi
+
+exec "$ANDROID_SDK_ROOT/tools/emulator" -avd "$AVD_NAME"
