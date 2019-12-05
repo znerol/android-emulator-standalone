@@ -22,19 +22,19 @@ usage() {
 }
 
 get_tag() {
-  ${SED} -n "s/^[\\.s]*tag\\.id[\\.s]*=[\\.s]*//p" "${1}"
+  ${SED} -n 's/^[\.s]*tag\.id[\.s]*=[\.s]*//p' "${1}"
 }
 
 get_abi() {
-  ${SED} -n "s/^[\\.s]*abi\\.type[\\.s]*=[\\.s]*//p" "${1}"
+  ${SED} -n 's/^[\.s]*abi\.type[\.s]*=[\.s]*//p' "${1}"
 }
 
 get_target() {
-  ${SED} -n "s/^[\\.s]*target[\\.s]*=[\\.s]*//p" "${1}"
+  ${SED} -n 's/^[\.s]*target[\.s]*=[\.s]*//p' "${1}"
 }
 
 get_display_name() {
-  ${SED} -n "s/^[\\.s]*avd\\.ini\\.displayname[\\.s]*=[\\.s]*//p" "${1}"
+  ${SED} -n 's/^[\.s]*avd\.ini\.displayname[\.s]*=[\.s]*//p' "${1}"
 }
 
 build_app() {
