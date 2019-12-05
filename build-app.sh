@@ -8,7 +8,6 @@ set -eux
 CAT=/bin/cat
 CHMOD=/bin/chmod
 CP=/bin/cp
-DEFAULTS=/usr/bin/defaults
 FIND=/usr/bin/find
 LN=/bin/ln
 MKDIR=/bin/mkdir
@@ -23,19 +22,19 @@ usage() {
 }
 
 get_tag() {
-  ${SED} -n "s/^[\s]*tag\.id[\s]*=[\s]*//p" "${1}"
+  ${SED} -n "s/^[\\.s]*tag\\.id[\\.s]*=[\\.s]*//p" "${1}"
 }
 
 get_abi() {
-  ${SED} -n "s/^[\s]*abi\.type[\s]*=[\s]*//p" "${1}"
+  ${SED} -n "s/^[\\.s]*abi\\.type[\\.s]*=[\\.s]*//p" "${1}"
 }
 
 get_target() {
-  ${SED} -n "s/^[\s]*target[\s]*=[\s]*//p" "${1}"
+  ${SED} -n "s/^[\\.s]*target[\\.s]*=[\\.s]*//p" "${1}"
 }
 
 get_display_name() {
-  ${SED} -n "s/^[\s]*avd\.ini\.displayname[\s]*=[\s]*//p" "${1}"
+  ${SED} -n "s/^[\\.s]*avd\\.ini\\.displayname[\\.s]*=[\\.s]*//p" "${1}"
 }
 
 build_app() {
@@ -92,7 +91,7 @@ EOF
 AVD_BASE="${HOME}/.android/avd"
 AVD_SDK="${2:-"${HOME}/Library/Android/sdk"}"
 AVD_NAME="${1:-}"
-if [ -n "${AVD_NAME}" -a -x "${AVD_SDK}/tools/bin/sdkmanager" -a -f "${AVD_BASE}/${AVD_NAME}.ini" -a -f "${AVD_BASE}/${AVD_NAME}.avd/config.ini" ]; then
+if [ -n "${AVD_NAME}" ] && [ -x "${AVD_SDK}/tools/bin/sdkmanager" ] && [ -f "${AVD_BASE}/${AVD_NAME}.ini" ] && [ -f "${AVD_BASE}/${AVD_NAME}.avd/config.ini" ]; then
   build_app "${AVD_SDK}" "${AVD_BASE}" "${AVD_NAME}"
 else
   usage
