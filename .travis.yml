@@ -1,0 +1,5 @@
+dist: bionic
+language: generic
+
+script:
+  - shellcheck build-app.sh android-emulator-standalone

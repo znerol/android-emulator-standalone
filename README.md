@@ -2,6 +2,8 @@
 
 A simple script to generate standalone macOS apps from existing Android Emulator AVDs.
 
+[![Build Status](https://travis-ci.org/znerol/android-emulator-standalone.svg?branch=master)](https://travis-ci.org/znerol/android-emulator-standalone)
+
 ```
 Usage: build-app.sh AVD_NAME [ANDROID_SDK_ROOT]
 ```
