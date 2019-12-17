@@ -15,6 +15,7 @@ fi
 
 if [ ! -f "$ANDROID_AVD_HOME/$AVD_NAME.ini" ]; then
   mkdir -p "$ANDROID_AVD_HOME"
+  tmutil addexclusion "$ANDROID_AVD_HOME"
   cp -r "$TEMPLATE_ROOT/$AVD_NAME.ini" "$TEMPLATE_ROOT/$AVD_NAME.avd" "$ANDROID_AVD_HOME"
   echo "path=$ANDROID_AVD_HOME/$AVD_NAME.avd" >> "$ANDROID_AVD_HOME/$AVD_NAME.ini"
 fi
