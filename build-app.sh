@@ -68,7 +68,8 @@ EOF
   ${LN} -s android-emulator-standalone "${DIST_DIR}/Contents/MacOS/$AVD_NAME"
 
   # Install required tools and image
-  SDK_MGR="${AND_SDK}/tools/bin/sdkmanager"
+  SDK_MGR="${AND_SDK}/cmdline-tools/latest/bin/sdkmanager"
+
   ${YES} | ${SDK_MGR} --sdk_root="${DIST_DIR}/Contents/Resources/android-sdk" --licenses
   ${SDK_MGR} --sdk_root="${DIST_DIR}/Contents/Resources/android-sdk" "emulator" "platform-tools" "tools" "platforms;${TARGET}" "system-images;${TARGET};${TAG};${ABI}"
   ${FIND} "${DIST_DIR}/Contents/Resources/android-sdk" -perm -0700 -print0 | ${XARGS} -0 ${CHMOD} +x
@@ -91,7 +92,7 @@ EOF
 AVD_BASE="${HOME}/.android/avd"
 AVD_SDK="${2:-"${HOME}/Library/Android/sdk"}"
 AVD_NAME="${1:-}"
-if [ -n "${AVD_NAME}" ] && [ -x "${AVD_SDK}/tools/bin/sdkmanager" ] && [ -f "${AVD_BASE}/${AVD_NAME}.ini" ] && [ -f "${AVD_BASE}/${AVD_NAME}.avd/config.ini" ]; then
+if [ -n "${AVD_NAME}" ] && [ -x "${AVD_SDK}/cmdline-tools/latest/bin/sdkmanager" ] && [ -f "${AVD_BASE}/${AVD_NAME}.ini" ] && [ -f "${AVD_BASE}/${AVD_NAME}.avd/config.ini" ]; then
   build_app "${AVD_SDK}" "${AVD_BASE}" "${AVD_NAME}"
 else
   usage

@@ -23,4 +23,4 @@ if [ ! -f "$ANDROID_AVD_HOME/$AVD_NAME.ini" ]; then
   echo "path=$ANDROID_AVD_HOME/$AVD_NAME.avd" >> "$ANDROID_AVD_HOME/$AVD_NAME.ini"
 fi
 
-exec "$ANDROID_SDK_ROOT/tools/emulator" -avd "$AVD_NAME"
+exec "$ANDROID_SDK_ROOT/emulator/emulator" -avd "$AVD_NAME"
